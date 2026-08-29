@@ -12,7 +12,7 @@ import { hubFromEnvironment } from "./hub.js";
 
 const server = new McpServer({
   name: "codex-notification-hub",
-  version: "0.1.0",
+  version: "0.1.3",
 });
 const configPath = process.env.CODEX_NOTIFICATION_HUB_CONFIG;
 if (!configPath) throw new Error("需要 CODEX_NOTIFICATION_HUB_CONFIG");
@@ -38,9 +38,9 @@ server.registerResource(
 server.registerTool(
   "open_notification_settings",
   {
-    title: "打开飞书通知设置",
+    title: "配置通知",
     description:
-      "渲染本机飞书通知设置页。用户在页面中填写并明确保存后，才会写入私有配置文件。",
+      "打开本机飞书通知设置页。用户选择本插件后只需说“配置通知”即可调用；在页面中填写并明确保存后，才会写入私有配置文件。",
     inputSchema: {},
     annotations: { readOnlyHint: true, destructiveHint: false },
     _meta: { ui: { resourceUri: SETUP_UI_URI } },

@@ -1,6 +1,6 @@
 {
   "name": "codex-notification-hub",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "私有、脱敏且可靠地将 Codex 关键状态通知路由到外部通道。",
   "author": {
     "name": "PonziCryptoApe",
@@ -13,12 +13,15 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Codex Notification Hub",
-    "shortDescription": "将 Codex 的关键状态可靠通知到飞书。",
-    "longDescription": "本地队列、脱敏与重试机制保障的 Codex 通知中心；首个适配器为飞书。",
+    "shortDescription": "将 Codex 的关键状态可靠通知到飞书；说“配置通知”即可设置。",
+    "longDescription": "本地队列、脱敏与重试机制保障的 Codex 通知中心；选择插件后发送“配置通知”即可打开飞书设置。",
     "developerName": "Local developer",
     "category": "Productivity",
     "capabilities": ["Write"],
-    "defaultPrompt": ["使用通知中心向我报告需要确认、受阻或完成的任务状态。"],
+    "defaultPrompt": [
+      "配置通知",
+      "使用通知中心向我报告需要确认、受阻或完成的任务状态。"
+    ],
     "brandColor": "#3370FF"
   },
   "mcpServers": "./.mcp.json"

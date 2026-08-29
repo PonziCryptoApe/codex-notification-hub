@@ -18,17 +18,17 @@
 
 安装者按以下顺序执行：
 
-1. 添加固定到发布版的 marketplace：`codex plugin marketplace add PonziCryptoApe/codex-notification-hub --ref v0.1.2`。
+1. 添加固定到发布版的 marketplace：`codex plugin marketplace add PonziCryptoApe/codex-notification-hub --ref v0.1.3`。
 2. 重启 ChatGPT desktop app，在 Plugins Directory 中选择 **Codex Notification Hub**，安装 `codex-notification-hub`。
 3. 在插件详情启用 `notification-hub` MCP 服务；在 `/hooks` 中审阅并信任 `hooks/hooks.json`。
-4. 开启一个**新任务**，调用“打开飞书通知设置”，在页面中填写 Webhook URL 和可选签名密钥；先保存，再进行受控测试。
+4. 开启一个**新任务**，在消息框从 `+` 选择 **Codex Notification Hub** 后，发送“配置通知”（不是 `/` 命令）；在页面中填写 Webhook URL 和可选签名密钥，先保存，再进行受控测试。
 
 不要把 marketplace、安装、启用钩子或真实发送视为本仓库开发的自动后续步骤；它们都会改变用户级状态或向外部服务发消息，必须由您确认后执行。
 
 ## 配置飞书
 
 1. 在目标飞书群创建**自定义机器人**，建议在安全设置中启用签名校验。
-2. 插件无配置时会安全启动，且所有通知通道关闭。在新任务中让 Codex 调用“打开飞书通知设置”，在页面中手动填写 Webhook URL 和可选签名密钥，再点击“保存并启用”。不需要手改 JSON 或设置环境变量。
+2. 插件无配置时会安全启动，且所有通知通道关闭。在新任务中从 `+` 选择本插件，再发送“配置通知”（不是 `/` 命令），即可打开页面手动填写 Webhook URL 和可选签名密钥，再点击“保存并启用”。不需要手改 JSON 或设置环境变量。
 3. 设置页把凭据保存到 `PLUGIN_DATA/config.json`：目录权限为 `0700`，文件权限为 `0600`，只允许当前本机用户读写。页面和工具结果绝不回显凭据；该文件不能提交、同步或备份到不可信位置。建议开启 macOS FileVault。
 4. `.env` 与 `config.example.json` 仅供开发者进行无 UI 的环境变量部署；插件也兼容 `env:变量名` 引用。不要在 Codex 对话中粘贴 Webhook 或签名密钥。
 5. MCP 服务会读取 `PLUGIN_DATA/config.json`。开发测试可设置 `CODEX_NOTIFICATION_HUB_CONFIG` 和 `CODEX_NOTIFICATION_HUB_DATA_DIR` 指向临时目录。
@@ -59,7 +59,7 @@ npm run validate:skill
 ## 故障排查
 
 - **服务没有出现**：确认已构建 `dist/server.js`、插件已安装，并在新任务启动后检查插件的 MCP 开关。
-- **如何设置或清除飞书**：在对话中打开“飞书通知设置”页面；清除后本机配置会删除，插件不再外发。
+- **如何设置或清除飞书**：从 `+` 选择插件后发送“配置通知”打开页面；清除后本机配置会删除，插件不再外发。
 - **钩子未执行**：插件钩子必须在 `/hooks` 审阅并信任；钩子是兜底，语义通知仍应优先调用 MCP 工具。
 - **飞书返回签名失败**：检查本机的 `FEISHU_WEBHOOK_SECRET` 是否为该机器人的签名密钥、系统时间是否正确。
 - **消息没有发送**：检查设置页是否显示“已启用”，配置文件是否在 `PLUGIN_DATA/config.json`，以及飞书群机器人是否仍有效。
