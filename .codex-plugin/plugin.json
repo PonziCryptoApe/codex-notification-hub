@@ -1,10 +1,13 @@
 {
   "name": "codex-notification-hub",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "私有、脱敏且可靠地将 Codex 关键状态通知路由到外部通道。",
   "author": {
-    "name": "Local developer"
+    "name": "PonziCryptoApe",
+    "url": "https://github.com/PonziCryptoApe"
   },
+  "homepage": "https://github.com/PonziCryptoApe/codex-notification-hub",
+  "repository": "https://github.com/PonziCryptoApe/codex-notification-hub",
   "license": "MIT",
   "keywords": ["codex", "notification", "feishu", "mcp", "hooks"],
   "skills": "./skills/",

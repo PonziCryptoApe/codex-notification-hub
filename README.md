@@ -14,15 +14,14 @@
 
 仓库提交的是两个已打包的运行产物：`dist/server.js` 与 `dist/hook.js`。因此安装者**无需**运行 `npm install` 或构建 TypeScript；但其系统仍须具备 Node.js 20 或更高版本来运行 MCP 服务。
 
-将此插件置于 GitHub marketplace 后，安装者可以固定到 release tag 或 commit SHA，避免意外跟随 `main` 的变更。官方支持将 GitHub 仓库/URL 作为 marketplace 源；仓库 marketplace 由 `.agents/plugins/marketplace.json` 定义。具体条目必须使用你真实的 GitHub 仓库 URL，不能保留示例占位符。
+本仓库已提供正式 marketplace：`.agents/plugins/marketplace.json`。它将插件来源固定到 release tag，避免意外跟随 `main` 的变更。
 
-建议发布者按以下顺序自行执行：
+安装者按以下顺序执行：
 
-1. 修改插件清单中的发布者与仓库元数据，运行 `npm ci && npm run check && npm run build`，提交源码、锁文件和 `dist/`。
-2. 将 `marketplace.github.example.json` 复制为 `.agents/plugins/marketplace.json`，替换 `OWNER/REPOSITORY`，并以 `source: "url"` 或 `source: "git-subdir"` 指向经 tag 固定的仓库内容。
-3. 安装者使用 `codex plugin marketplace add owner/repo --ref v0.1.1` 添加 marketplace，再从插件目录安装本插件。
-4. 安装者在插件详情启用 `notification-hub` MCP 服务；在 `/hooks` 中审阅并信任 `hooks/hooks.json`。
-5. 设置飞书环境变量后，开启一个**新任务**，用 `publish_notification` 做一次受控测试。
+1. 添加固定到发布版的 marketplace：`codex plugin marketplace add PonziCryptoApe/codex-notification-hub --ref v0.1.2`。
+2. 重启 ChatGPT desktop app，在 Plugins Directory 中选择 **Codex Notification Hub**，安装 `codex-notification-hub`。
+3. 在插件详情启用 `notification-hub` MCP 服务；在 `/hooks` 中审阅并信任 `hooks/hooks.json`。
+4. 开启一个**新任务**，调用“打开飞书通知设置”，在页面中填写 Webhook URL 和可选签名密钥；先保存，再进行受控测试。
 
 不要把 marketplace、安装、启用钩子或真实发送视为本仓库开发的自动后续步骤；它们都会改变用户级状态或向外部服务发消息，必须由您确认后执行。
 

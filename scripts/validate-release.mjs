@@ -9,6 +9,7 @@ const requiredFiles = [
   "skills/notification-policy/SKILL.md",
   "dist/server.js",
   "dist/hook.js",
+  ".agents/plugins/marketplace.json",
 ];
 
 for (const path of requiredFiles) {
@@ -34,6 +35,26 @@ if (manifest) {
   if (manifest.mcpServers !== "./.mcp.json")
     failures.push("plugin.json 必须引用 ./.mcp.json");
 }
+
+let marketplace;
+try {
+  marketplace = JSON.parse(
+    await readFile(".agents/plugins/marketplace.json", "utf8"),
+  );
+} catch {
+  failures.push("marketplace.json 不是有效 JSON");
+}
+
+const marketplaceEntry = marketplace?.plugins?.find(
+  (entry) => entry.name === "codex-notification-hub",
+);
+if (
+  marketplaceEntry?.source?.source !== "url" ||
+  marketplaceEntry.source.url !==
+    "https://github.com/PonziCryptoApe/codex-notification-hub.git" ||
+  marketplaceEntry.source.ref !== `v${manifest?.version ?? ""}`
+)
+  failures.push("marketplace 必须指向当前版本的 GitHub 插件来源");
 
 const example = await readFile("config.example.json", "utf8");
 if (
