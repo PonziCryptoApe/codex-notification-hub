@@ -1,0 +1,31 @@
+{
+  "description": "通知中心的机械事件捕获与 Stop 兜底。安装后必须由用户在 /hooks 审阅并信任。",
+  "hooks": {
+    "PermissionRequest": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node ${PLUGIN_ROOT}/dist/hook.js",
+            "timeout": 5,
+            "async": true,
+            "statusMessage": "Recording permission notification"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node ${PLUGIN_ROOT}/dist/hook.js",
+            "timeout": 5,
+            "async": true,
+            "statusMessage": "Checking missed notification"
+          }
+        ]
+      }
+    ]
+  }
+}

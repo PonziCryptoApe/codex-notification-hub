@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "notification-hub": {
+      "command": "node",
+      "args": ["${PLUGIN_ROOT}/dist/server.js"],
+      "env": {
+        "CODEX_NOTIFICATION_HUB_CONFIG": "${PLUGIN_DATA}/config.json",
+        "CODEX_NOTIFICATION_HUB_DATA_DIR": "${PLUGIN_DATA}"
+      }
+    }
+  }
+}

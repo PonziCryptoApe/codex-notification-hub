@@ -1,0 +1,13 @@
+{
+  "routing": { "strategy": "all", "channels": [] },
+  "channels": {
+    "feishu": {
+      "enabled": false
+    }
+  },
+  "queue": {
+    "dedupeWindowSeconds": 86400,
+    "maxAttempts": 4,
+    "baseRetryDelayMs": 1000
+  }
+}
