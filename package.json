@@ -1,6 +1,6 @@
 {
   "name": "codex-notification-hub",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "type": "module",
   "engines": {
@@ -10,7 +10,7 @@
     "clean": "rm -rf dist work/test-dist",
     "build": "npm run clean && npm run bundle",
     "bundle": "esbuild src/server.ts --bundle --platform=node --format=esm --target=node20 --outfile=dist/server.js && esbuild src/hook.ts --bundle --platform=node --format=esm --target=node20 --outfile=dist/hook.js",
-    "test": "rm -rf work/test-dist && tsc -p tsconfig.test.json && node --test work/test-dist/test/**/*.test.js",
+    "test": "rm -rf work/test-dist && tsc -p tsconfig.test.json && node scripts/run-tests.mjs",
     "format:check": "prettier --check .",
     "lint": "tsc --noEmit -p tsconfig.json",
     "validate:release": "node scripts/validate-release.mjs",

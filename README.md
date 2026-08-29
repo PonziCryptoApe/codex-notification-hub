@@ -20,7 +20,7 @@
 
 1. 修改插件清单中的发布者与仓库元数据，运行 `npm ci && npm run check && npm run build`，提交源码、锁文件和 `dist/`。
 2. 将 `marketplace.github.example.json` 复制为 `.agents/plugins/marketplace.json`，替换 `OWNER/REPOSITORY`，并以 `source: "url"` 或 `source: "git-subdir"` 指向经 tag 固定的仓库内容。
-3. 安装者使用 `codex plugin marketplace add owner/repo --ref v0.1.0` 添加 marketplace，再从插件目录安装本插件。
+3. 安装者使用 `codex plugin marketplace add owner/repo --ref v0.1.1` 添加 marketplace，再从插件目录安装本插件。
 4. 安装者在插件详情启用 `notification-hub` MCP 服务；在 `/hooks` 中审阅并信任 `hooks/hooks.json`。
 5. 设置飞书环境变量后，开启一个**新任务**，用 `publish_notification` 做一次受控测试。
 

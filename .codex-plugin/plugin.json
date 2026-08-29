@@ -1,6 +1,6 @@
 {
   "name": "codex-notification-hub",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "私有、脱敏且可靠地将 Codex 关键状态通知路由到外部通道。",
   "author": {
     "name": "Local developer"
